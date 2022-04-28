@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tarea 5</title>
+    <style>
+      #pelota {
+        border: 1px solid #18cf5ea2;
+        background-color: #38ee9375;
+        border-radius: 40px;
+        position: relative;
+        display: block;
+        height: 50px;
+        width: 50px;
+      }
+
+      #back {
+        width: 400px;
+        height: 400px;
+        background-color: #ee9038f5;
+        border: 1px solid #ee9038f5;
+
+        overflow: hidden;
+      }
+
+      #esp {
+        border: 40px;
+        position: relative;
+      }
+
+      #boton {
+        border: 2px solid #f88808;
+        width: 89px;
+        height: 30px;
+        border-radius: 10px;
+        background-color: #18cf5ea2;
+        color: whitesmoke;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-family: "Times New Roman", Times, serif;
+      }
+    </style>
+
+    <script>
+      var y = 0;
+      var x = 0;
+      var controlY = 1;
+      var controlX = 1;
+      var velocidad = 2;
+
+      function empezar() {
+        var intervalo = setInterval("mover()", 0.3);
+      }
+
+      function mover() {
+        if (controlY == 1) {
+          y += velocidad;
+        }
+        if (y <= 0) {
+          controlY = 1;
+          y = 0;
+        } else if (y >= document.getElementById("back").offsetHeight - 50) {
+          y = document.getElementById("back").offsetHeight - 50;
+        }
+        if (controlX == 1) {
+          x += velocidad;
+        }
+        if (x <= 0) {
+          controlX = 1;
+          x = 0;
+        } else if (x >= document.getElementById("back").offsetWidth - 50) {
+          controlX = 0;
+          x = document.getElementById("back").offsetWidth - 50;
+        }
+        document.getElementById("pelota").style.left = String(x) + "px";
+        document.getElementById("pelota").style.top = String(y) + "px";
+      }
+
+      function girar() {
+        document.getElementById("pelota").className = "gira";
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="back">
+      <div id="pelota"></div>
+    </div>
+    <div id="esp">
+      <br />
+      <input type="button" value="Accion" id="boton" onclick="empezar();" />
+    </div>
+  </body>
+</html>
